@@ -2,7 +2,7 @@
 
 const { app, assert } = require('egg-mock/bootstrap');
 
-describe('test/app/controller/seckill.test.js', () => {
+describe('test/app/service/seckill.test.js', () => {
 
   before(() => {
     app.redis.set('counter', 1);
@@ -17,15 +17,11 @@ describe('test/app/controller/seckill.test.js', () => {
   });
 
   it('should get "Buy 1 item successfully." then "Item sold out!"', async () => {
-    await app.mockCsrf();
-    await app.httpRequest()
-      .post('/seckill')
-      .expect('Buy 1 item successfully.')
-      .expect(200);
+    const ctx = app.mockContext();
+    let result = await ctx.service.seckill.seckill();
+    assert(result, 'Buy 1 item successfully.');
 
-    await app.httpRequest()
-      .post('/seckill')
-      .expect('Item sold out!')
-      .expect(200);
+    result = await ctx.service.seckill.seckill();
+    assert(result, 'Item sold out!');
   });
 });

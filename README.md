@@ -19,7 +19,7 @@ SecKill demo
 	$ create table seckill (
 		id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 		date DATETIME
-	 );
+	);
 	```
 * Create kafka topic
 	```bash
@@ -32,6 +32,13 @@ SecKill demo
 	$ get counter
 	```
 * Run the test with [Jmeter](https://jmeter.apache.org/). Please refer "Seckill.jmx" for more detail.
+	Add following configure to 'config\plugin.js' file to avoid 'missing csrf token' error while testing with Jmeter. Do __NOT__ add this in Production.
+	```bash
+	exports.security = {
+		enable: false,
+		package: 'egg-security',
+	};
+	```
 
 see [egg docs][egg] for more detail.
 

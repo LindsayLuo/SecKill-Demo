@@ -17,13 +17,14 @@ describe('test/app/controller/seckill.test.js', () => {
   });
 
   it('should GET /seckill', async () => {
+    await app.mockCsrf();
     await app.httpRequest()
-      .get('/seckill')
+      .post('/seckill')
       .expect('Buy 1 item successfully.')
       .expect(200);
 
     await app.httpRequest()
-      .get('/seckill')
+      .post('/seckill')
       .expect('Item sold out!')
       .expect(200);
   });

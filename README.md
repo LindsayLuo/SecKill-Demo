@@ -13,7 +13,7 @@ SecKill demo
 	```
 * Create seckill table.
 	```bash
-	$ docker exec -it docker_mysql_1 mysql -u root -p 
+	$ docker exec -it docker_mysql_1 mysql -u root -p
 	$ create database seckill;
 	$ use seckill;
 	$ create table seckill (
@@ -25,7 +25,7 @@ SecKill demo
 	```bash
 	$ docker exec -it docker_kafka_1 /opt/kafka/bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic CAR_NUMBER
 	```
-* Create redis key
+* Create redis key directly Or set it via '/initial/redis' Or '/initial/redis?key=counter&value=100'.
 	```bash
 	$ docker exec -it docker_redis_1 redis-cli
 	$ set counter 100
